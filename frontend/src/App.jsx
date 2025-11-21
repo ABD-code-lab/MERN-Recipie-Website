@@ -1,15 +1,21 @@
-// HomePage.jsx
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 const HomePage = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div className="homepage">
 
       {/* ================= HEADER ================= */}
       <header className="header">
         <div className="logo">🍽️ RecipeHub</div>
-        <nav className="nav">
+
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
           <a href="#">Home</a>
           <a href="#">Browse Recipes</a>
           <a href="#">Submit Recipes</a>
@@ -18,6 +24,13 @@ const HomePage = () => {
           <a href="#">Contact Us</a>
           <button className="login-btn">Login</button>
         </nav>
+
+        {/* Hamburger Menu */}
+        <div className="hamburger" onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </header>
 
       {/* ================= HERO SECTION ================= */}
@@ -110,7 +123,6 @@ const HomePage = () => {
         </div>
         <p className="copy">© 2025 RecipeHub — All Rights Reserved.</p>
       </footer>
-
     </div>
   );
 };
