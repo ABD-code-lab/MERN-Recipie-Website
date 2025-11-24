@@ -5,6 +5,11 @@ html, body {
   padding: 0;
   font-family: Arial, sans-serif;
   background: #fff8f0; /* full-page light orange */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 /* ====== HOMEPAGE ====== */
@@ -12,6 +17,8 @@ html, body {
   min-height: 100vh;
   width: 100%;
   background: #fff8f0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ====== HEADER ====== */
@@ -25,6 +32,7 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-wrap: wrap; /* allows items to wrap on smaller screens */
 }
 
 .logo {
@@ -37,6 +45,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap; /* wrap nav items */
 }
 
 .header nav a {
@@ -80,13 +89,13 @@ html, body {
 }
 
 .hero h1 {
-  font-size: 50px;
+  font-size: clamp(28px, 5vw, 50px); /* responsive scaling */
   margin-bottom: 15px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: clamp(14px, 2.5vw, 20px);
   margin-bottom: 25px;
   text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 }
@@ -129,11 +138,23 @@ html, body {
 }
 
 /* ====== MEDIA QUERIES ====== */
+@media (max-width: 1024px) {
+  .header {
+    padding: 15px 30px;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
     padding: 15px 20px;
+  }
+
+  .header nav {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
   }
 
   .hero h1 {
@@ -142,6 +163,11 @@ html, body {
 
   .hero p {
     font-size: 16px;
+  }
+
+  .login-btn, .explore-btn {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -156,5 +182,9 @@ html, body {
 
   .login-btn, .explore-btn {
     padding: 10px 20px;
+  }
+
+  .header nav a {
+    font-size: 14px;
   }
 }
