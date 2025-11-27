@@ -1,58 +1,25 @@
 import express from "express";
 import { Recipe } from "../models/recipe.js";
-<<<<<<< HEAD
-
-
-
-const router = express.Router()
-
-
-
-router.post("/api/addRecipe", async(req , res)=>{
-    try{
-        const {name, desc, ingredients, steps ,rating,category,difficulty,cookingTime,servings} = req.body;
-
-        if (!name || !desc){
-            return res.status(400).json({message:"Missing field"})
-        }
-        const add_recipe = new Recipe({name,desc,ingredients,steps,rating,category,difficulty,cookingTime,servings});
-
-        await add_recipe.save()
-        res.status(201).json({message:"Recipe added"})
-
-
-        
-
-
-    }
-    catch(err){
-        console.log("ERROR IN RECIPE....", err)
-}
-})
-
-
-
-export default router;
-=======
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
 router.post("/api/addRecipe", async (req, res) => {
   try {
-    const Cookie = req.cookies.auth;
-
+    // Check auth cookie
+    const Cookie = req.cookies?.auth;
     if (!Cookie) return res.status(401).json({ message: "No auth cookie found" });
 
     const parsed = JSON.parse(Cookie); // { token, email }
-
     if (!parsed.token) return res.status(401).json({ message: "No token in cookie" });
 
-    // Decode the JWT token
+    // Decode JWT
     const decoded = jwt.verify(parsed.token, process.env.JWT_SECRET);
-    const username = decoded.role;
-    console.log("DECODED", decoded); // id, role, email
+    const username = decoded.role; // OR decoded.username if you stored that
 
+    console.log("Decoded Token:", decoded);
+
+    // Extract fields
     const {
       name,
       desc,
@@ -66,11 +33,12 @@ router.post("/api/addRecipe", async (req, res) => {
     } = req.body;
 
     if (!name || !desc) {
-      return res.status(400).json({ message: "Missing field" });
+      return res.status(400).json({ message: "Missing required fields" });
     }
 
+    // Create new recipe
     const add_recipe = new Recipe({
-    username,
+      username,
       name,
       desc,
       ingredients,
@@ -80,17 +48,17 @@ router.post("/api/addRecipe", async (req, res) => {
       difficulty,
       cookingTime,
       servings,
-      createdBy: decoded.id // optional: track which user added it
+      createdBy: decoded.id // track which user added it
     });
 
     await add_recipe.save();
-    res.status(201).json({ message: "Recipe added" });
+
+    return res.status(201).json({ message: "Recipe added successfully" });
 
   } catch (err) {
-    console.log("ERROR IN RECIPE....", err);
-    res.status(500).json({ message: "Something went wrong" });
+    console.error("ERROR IN ADDING RECIPE:", err);
+    return res.status(500).json({ message: "Server error while adding recipe" });
   }
 });
 
 export default router;
->>>>>>> 1b1efe1 (initial commit)

@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 
-
-
 const RecipeSchema = new mongoose.Schema({
-<<<<<<< HEAD
-=======
-  username :{type:String, required:true},
->>>>>>> 1b1efe1 (initial commit)
   name:{ type :String, required:true},
   ingredients:{type:[String], required:true},
   steps:{type:[String], required:true},

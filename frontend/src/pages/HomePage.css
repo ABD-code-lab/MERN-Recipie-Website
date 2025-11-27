@@ -4,16 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-<<<<<<< HEAD
   background: #fff8f0; /* full-page light orange */
   box-sizing: border-box;
 }
 
 *, *::before, *::after {
   box-sizing: inherit;
-=======
-  background: #fff8f0;
->>>>>>> 1b1efe1 (initial commit)
 }
 
 /* ====== HOMEPAGE ====== */
@@ -36,7 +32,7 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 100;
-  flex-wrap: wrap; /* allows items to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -50,11 +46,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 15px;
-<<<<<<< HEAD
-  flex-wrap: wrap; /* wrap nav items */
-=======
-  transition: max-height 0.3s ease;
->>>>>>> 1b1efe1 (initial commit)
+  flex-wrap: wrap;
 }
 
 .header nav a {
@@ -127,7 +119,7 @@ html, body {
 }
 
 .hero h1 {
-  font-size: clamp(28px, 5vw, 50px); /* responsive scaling */
+  font-size: clamp(28px, 5vw, 50px);
   margin-bottom: 15px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
@@ -190,17 +182,13 @@ html, body {
   }
 
   .header nav {
-<<<<<<< HEAD
     width: 100%;
     justify-content: space-between;
     margin-top: 10px;
-=======
-    display: none;
   }
 
   .hamburger {
     display: flex;
->>>>>>> 1b1efe1 (initial commit)
   }
 
   .hero h1 {
