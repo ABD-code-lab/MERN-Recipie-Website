@@ -45,7 +45,7 @@ const HomePage = () => {
         <div className="hero-left">
           <h1>Discover, Share, and Cook <br /> Delicious Recipes</h1>
           <p>Find your next favorite dish with RecipeHub!</p>
-          <button className="explore-btn">Explore Recipes</button>
+          <button className="explore-btn"> <a href="/recipes">Explore Recipes</a></button>
         </div>
       </section>
     </div>

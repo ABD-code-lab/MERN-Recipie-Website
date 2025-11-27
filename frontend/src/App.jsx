@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RecipePage from "./pages/RecipePage";
-import CreateRecipe from "./pages/CreateRecipe";  // <-- Added
+import CreateRecipe from "./pages/CreateRecipe";
+import UpdateRecipePage from "./pages/UpdateRecipePage"; // <-- NEW
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
 
           {/* Create new recipe page */}
           <Route path="/recipes/create" element={<CreateRecipe />} /> 
+
+          {/* Update recipe page */}
+          <Route path="/recipes/update/:id" element={<UpdateRecipePage />} /> 
         </Routes>
       </AuthProvider>
     </BrowserRouter>

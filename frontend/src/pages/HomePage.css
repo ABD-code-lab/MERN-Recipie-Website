@@ -140,6 +140,10 @@ html, body {
   font-weight: bold;
   transition: background 0.3s;
 }
+.explore-btn a {
+  color: white;
+  text-decoration: none;
+}
 
 .explore-btn:hover {
   background: #e64a19;

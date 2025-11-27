@@ -1,6 +1,7 @@
-import { useState } from "react";
+// src/components/RecipeForm.jsx
+import { useState, useEffect } from "react";
 
-export default function RecipeForm({ onSubmit }) {
+export default function RecipeForm({ onSubmit, initialData }) {
   const [form, setForm] = useState({
     name: "",
     ingredients: [""],
@@ -12,6 +13,23 @@ export default function RecipeForm({ onSubmit }) {
     cookingTime: "",
     servings: ""
   });
+
+  // Prefill the form if initialData is provided
+  useEffect(() => {
+    if (initialData) {
+      setForm({
+        name: initialData.name || "",
+        ingredients: initialData.ingredients?.length ? initialData.ingredients : [""],
+        steps: initialData.steps?.length ? initialData.steps : [""],
+        desc: initialData.desc || "",
+        rating: initialData.rating || "",
+        category: initialData.category || "",
+        difficulty: initialData.difficulty || "",
+        cookingTime: initialData.cookingTime || "",
+        servings: initialData.servings || ""
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -38,7 +56,7 @@ export default function RecipeForm({ onSubmit }) {
 
   return (
     <form onSubmit={submitForm} className="recipe-form">
-      <h2>Create Recipe</h2>
+      <h2>{initialData ? "Update Recipe" : "Create Recipe"}</h2>
 
       <input
         type="text"
@@ -137,7 +155,7 @@ export default function RecipeForm({ onSubmit }) {
       />
 
       <button type="submit" className="submit-btn">
-        Submit Recipe
+        {initialData ? "Update Recipe" : "Submit Recipe"}
       </button>
 
       <style jsx>{`
