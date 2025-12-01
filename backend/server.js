@@ -16,7 +16,11 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: "https://recipe-application-3.onrender.com",
+  origin: [
+    "https://recipe-application-3.onrender.com",  // frontend (Render)
+    "http://localhost:5173"                       // local dev
+  ],
+  methods: "GET,POST,PUT,PATCH,DELETE",
   credentials: true
 }));
 app.use(express.json());
