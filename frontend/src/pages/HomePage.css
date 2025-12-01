@@ -4,16 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-<<<<<<< HEAD
   background: #fff8f0; /* full-page light orange */
   box-sizing: border-box;
 }
 
 *, *::before, *::after {
   box-sizing: inherit;
-=======
-  background: #fff8f0;
->>>>>>> 1b1efe1 (initial commit)
 }
 
 /* ====== HOMEPAGE ====== */
@@ -50,11 +46,8 @@ html, body {
   display: flex;
   align-items: center;
   gap: 15px;
-<<<<<<< HEAD
   flex-wrap: wrap; /* wrap nav items */
-=======
   transition: max-height 0.3s ease;
->>>>>>> 1b1efe1 (initial commit)
 }
 
 .header nav a {
@@ -190,17 +183,11 @@ html, body {
   }
 
   .header nav {
-<<<<<<< HEAD
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 10px;
-=======
     display: none;
   }
 
   .hamburger {
     display: flex;
->>>>>>> 1b1efe1 (initial commit)
   }
 
   .hero h1 {

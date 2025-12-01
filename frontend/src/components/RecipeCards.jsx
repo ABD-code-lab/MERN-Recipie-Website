@@ -30,7 +30,8 @@ const RecipeCards = ({ recipe, onUpdate, onDelete }) => {
     setIsOwner(localName === recipeName);
   }, [recipe.username]);
 
-  const handleChange = (e) => setUpdatedRecipe(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) =>
+    setUpdatedRecipe(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleArrayChange = (e) => {
     const lines = e.target.value.split('\n').map(l => l.trim()).filter(Boolean);
@@ -39,7 +40,7 @@ const RecipeCards = ({ recipe, onUpdate, onDelete }) => {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/recipe/api/updateRecipe/${recipe._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/recipe/${recipe._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedRecipe),
@@ -57,12 +58,12 @@ const RecipeCards = ({ recipe, onUpdate, onDelete }) => {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this recipe?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/recipe/api/deleteRecipe/${recipe._id}`, { method: "DELETE" });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/recipe/${recipe._id}`, { method: "DELETE" });
       if (!res.ok) throw new Error(await res.text());
       onDelete(recipe._id);
       alert("Recipe deleted successfully!");
-    } catch {
-      alert("Recipe deleted successfully!");
+    } catch (err) {
+      alert("Recipe delete successfully " );
     }
   };
 
